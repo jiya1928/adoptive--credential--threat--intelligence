@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI, WebSocket
 from pydantic import BaseModel
 from argon2 import PasswordHasher
