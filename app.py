@@ -14,18 +14,12 @@ import asyncio
 import json
 import numpy as np
 
-# =========================================================
-# ELITE PASSWORD INTELLIGENCE ENGINE
-# =========================================================
 
 app = FastAPI(
     title="Adaptive Credential Threat Intelligence Platform",
     version="5.0"
 )
 
-# =========================================================
-# ZERO TRUST POLICY
-# =========================================================
 
 ZERO_POINT_POLICY = {
     "min_length": 12,
@@ -36,9 +30,6 @@ ZERO_POINT_POLICY = {
     "require_special": True
 }
 
-# =========================================================
-# SECURITY DATABASES
-# =========================================================
 
 BLACKLIST = {
     "password",
@@ -72,15 +63,10 @@ BREACHED_HASHES = {
     hashlib.sha1("qwerty123".encode()).hexdigest()
 }
 
-# =========================================================
-# HASHING ENGINE
-# =========================================================
+
 
 ph = PasswordHasher()
 
-# =========================================================
-# AI MODEL
-# =========================================================
 
 model = RandomForestClassifier()
 
@@ -102,24 +88,14 @@ Y = np.array([
 
 model.fit(X, Y)
 
-# =========================================================
-# INPUT MODEL
-# =========================================================
-
 class PasswordRequest(BaseModel):
     password: str
     username: str = ""
 
-# =========================================================
-# UNICODE NORMALIZATION
-# =========================================================
 
 def normalize_unicode(password: str) -> str:
     return unicodedata.normalize("NFKC", password)
 
-# =========================================================
-# CONSTANT TIME COMPARISON
-# =========================================================
 
 def constant_time_compare(a: str, b: str) -> bool:
     return hmac.compare_digest(
@@ -127,9 +103,6 @@ def constant_time_compare(a: str, b: str) -> bool:
         b.encode()
     )
 
-# =========================================================
-# MEMORY SAFE CLEANUP
-# =========================================================
 
 def secure_memory_cleanup(secret: str):
 
@@ -145,9 +118,6 @@ def secure_memory_cleanup(secret: str):
     except Exception:
         pass
 
-# =========================================================
-# VALIDATION BEFORE ENCRYPTION
-# =========================================================
 
 def validate_password(password: str):
 
@@ -178,10 +148,6 @@ def validate_password(password: str):
 
     return True, "Validation successful"
 
-# =========================================================
-# ENTROPY ENGINE
-# =========================================================
-
 def charset_size(password: str):
 
     charset = 0
@@ -209,10 +175,6 @@ def calculate_entropy(password: str):
 
     return round(entropy, 2)
 
-# =========================================================
-# BREACH DETECTION
-# =========================================================
-
 def breach_check(password: str):
 
     sha1 = hashlib.sha1(
@@ -220,10 +182,6 @@ def breach_check(password: str):
     ).hexdigest()
 
     return sha1 in BREACHED_HASHES
-
-# =========================================================
-# PASSWORD MUTATION RISK
-# =========================================================
 
 def mutation_risk(password: str):
 
@@ -238,10 +196,6 @@ def mutation_risk(password: str):
         risk += 0.25
 
     return min(risk, 1.0)
-
-# =========================================================
-# BEHAVIORAL ANALYSIS
-# =========================================================
 
 def behavioral_score(password: str):
 
@@ -258,10 +212,6 @@ def behavioral_score(password: str):
 
     return max(score, 0)
 
-# =========================================================
-# AI GUESSABILITY ENGINE
-# =========================================================
-
 def ai_risk_prediction(
     entropy,
     breached,
@@ -276,9 +226,6 @@ def ai_risk_prediction(
 
     return int(prediction[0])
 
-# =========================================================
-# GPU ATTACK SIMULATION
-# =========================================================
 
 def gpu_attack_simulation(entropy: float):
 
@@ -305,10 +252,6 @@ def gpu_attack_simulation(entropy: float):
         "estimated_crack_time": "Centuries"
     }
 
-# =========================================================
-# QUANTUM RESISTANCE ESTIMATION
-# =========================================================
-
 def quantum_resistance(entropy: float):
 
     reduced_entropy = entropy / 2
@@ -320,10 +263,6 @@ def quantum_resistance(entropy: float):
         return "Partial Quantum Resistance"
 
     return "Quantum Resistant"
-
-# =========================================================
-# PASSWORD HEATMAP
-# =========================================================
 
 def password_heatmap(password: str):
 
@@ -342,9 +281,6 @@ def password_heatmap(password: str):
 
     return heatmap
 
-# =========================================================
-# POLICY ENGINE
-# =========================================================
 
 def policy_engine(
     entropy,
@@ -373,23 +309,16 @@ def policy_engine(
 
 # =========================================================
 # HASHING ENGINE
-# =========================================================
+# ========================================================
 
 def hash_password(password: str):
 
     return ph.hash(password)
 
-# =========================================================
-# TOKEN GENERATOR
-# =========================================================
 
 def generate_secure_token():
 
     return secrets.token_hex(32)
-
-# =========================================================
-# MAIN ANALYSIS ENGINE
-# =========================================================
 
 @app.post("/analyze")
 def analyze(req: PasswordRequest):
@@ -467,9 +396,6 @@ def analyze(req: PasswordRequest):
         )
     }
 
-# =========================================================
-# REAL-TIME WEBSOCKET ANALYSIS
-# =========================================================
 
 @app.websocket("/ws")
 async def websocket_analysis(websocket: WebSocket):
@@ -499,9 +425,6 @@ async def websocket_analysis(websocket: WebSocket):
 
         await asyncio.sleep(0.1)
 
-# =========================================================
-# HEALTH CHECK
-# =========================================================
 
 @app.get("/")
 def home():
@@ -510,10 +433,6 @@ def home():
         "message":
         "Adaptive Credential Threat Intelligence Platform Running"
     }
-
-# =========================================================
-# RUN SERVER
-# =========================================================
 
 if __name__ == "__main__":
 
