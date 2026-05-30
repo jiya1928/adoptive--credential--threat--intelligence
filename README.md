@@ -1,97 +1,140 @@
 # Adaptive Credential Intelligence
 
-AI-Powered Cybersecurity Password Intelligence Engine
+## AI-Powered Cybersecurity Platform
 
-## Overview
+Adaptive Credential Intelligence is an advanced cybersecurity platform designed to analyze password security, detect credential breaches, provide authentication protection, and monitor security events in real time.
 
-Adaptive Credential Intelligence is an advanced cybersecurity project designed to analyze password strength, simulate credential intelligence workflows, and demonstrate secure authentication concepts using modern full-stack technologies.
-
-The project combines:
-
-* FastAPI backend
-* React + Vite frontend
-* PostgreSQL database
-* SQLAlchemy ORM
-* AI-inspired password intelligence logic
-* Secure credential handling concepts
-
-This project was built as a cybersecurity-focused portfolio and research project.
+The platform combines Artificial Intelligence, Threat Intelligence, Password Security Analysis, JWT Authentication, PostgreSQL Database Management, and Real-Time Monitoring to improve organizational security posture.
 
 ---
 
-# Features
+## Features
 
-## Core Features
+### Password Intelligence Engine
 
 * AI-powered password strength analysis
-* Credential intelligence simulation
-* Secure backend API with FastAPI
-* PostgreSQL database integration
-* Real-time frontend interaction
-* Risk-based password evaluation
-* Validation before encryption simulation
-* Memory-safe credential handling concepts
-* Modern cybersecurity-themed UI
+* Password complexity evaluation
+* Weak password detection
+* Credential risk scoring
+
+### Breach Detection
+
+* Integration with Have I Been Pwned API
+* Breached password identification
+* Breach occurrence tracking
+* Credential exposure alerts
+
+### Authentication System
+
+* Secure user registration
+* User login system
+* JWT token generation
+* Token verification
+* Password hashing using bcrypt
+
+### Security Monitoring
+
+* Security event logging
+* Threat activity monitoring
+* Real-time WebSocket alerts
+* Suspicious behavior detection
+
+### Security Hardening
+
+* HTTP Security Headers
+* X-Frame-Options Protection
+* X-Content-Type-Options Protection
+* HSTS Security Enforcement
+
+### Database Management
+
+* PostgreSQL Integration
+* SQLAlchemy ORM
+* User Management System
+* Secure Data Storage
 
 ---
 
-# Tech Stack
+## Technology Stack
 
-## Frontend
+### Backend
+
+* FastAPI
+* Python
+* SQLAlchemy
+* PostgreSQL
+* JWT Authentication
+* Passlib
+* Loguru
+
+### Frontend
 
 * React
 * TypeScript
 * Vite
-* CSS
+* Axios
 
-## Backend
+### AI & Analytics
 
-* Python
-* FastAPI
-* SQLAlchemy
-* Uvicorn
+* Scikit-Learn
+* NumPy
+* Pandas
+* Joblib
 
-## Database
+### Security
 
-* PostgreSQL
+* Bcrypt Password Hashing
+* JWT Access Tokens
+* Security Headers
+* WebSocket Monitoring
 
 ---
 
-# Project Structure
+## Project Structure
 
-```bash
-adaptive-credential-intelligence/
-│
-├── backend/
+```text
+Adaptive-Credential-Intelligence
+
+├── backend
 │   ├── main.py
 │   ├── database.py
 │   ├── models.py
-│   ├── test_db.py
-│   └── venv/
+│   ├── auth.py
+│   ├── jwt_handler.py
+│   ├── ai_engine.py
+│   ├── breach_checker.py
+│   ├── security_headers.py
+│   ├── websocket.py
+│   ├── requirements.txt
 │
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.ts
+├── frontend
+│   ├── src
+│   │   ├── App.tsx
+│   │   ├── App.css
+│   │   ├── main.tsx
 │
-├── README.md
-└── app.py
+└── README.md
 ```
 
 ---
 
-# Installation Guide
+## Installation
 
-## 1. Clone Repository
+### Clone Repository
 
 ```bash
-git clone https://github.com/jiya1928/adaptive-credential-intelligence.git
+git clone https://github.com/Jiya1928/adaptive-credential-intelligence.git
+```
+
+```bash
+cd adaptive-credential-intelligence
 ```
 
 ---
 
-## 2. Backend Setup
+## Backend Setup
+
+Navigate to backend:
 
 ```bash
 cd backend
@@ -103,7 +146,7 @@ Create virtual environment:
 python -m venv venv
 ```
 
-Activate environment:
+Activate virtual environment:
 
 ### Windows
 
@@ -111,29 +154,65 @@ Activate environment:
 venv\Scripts\activate
 ```
 
+### Linux / Mac
+
+```bash
+source venv/bin/activate
+```
+
 Install dependencies:
 
 ```bash
-pip install fastapi uvicorn sqlalchemy psycopg2-binary
+pip install -r requirements.txt
 ```
 
-Run backend:
+---
+
+## PostgreSQL Setup
+
+Create database:
+
+```sql
+CREATE DATABASE adaptive_db;
+```
+
+Update database credentials inside:
+
+```python
+database.py
+```
+
+Example:
+
+```python
+DATABASE_URL = "postgresql://postgres:YOUR_PASSWORD@localhost/adaptive_db"
+```
+
+---
+
+## Run Backend
 
 ```bash
 uvicorn main:app --reload
 ```
 
-Backend runs on:
+Backend URL:
 
-```bash
+```text
 http://127.0.0.1:8000
+```
+
+Swagger Documentation:
+
+```text
+http://127.0.0.1:8000/docs
 ```
 
 ---
 
-## 3. Frontend Setup
+## Frontend Setup
 
-Open new terminal:
+Navigate to frontend:
 
 ```bash
 cd frontend
@@ -145,85 +224,89 @@ Install dependencies:
 npm install
 ```
 
-Run frontend:
+Run application:
 
 ```bash
 npm run dev
 ```
 
-Frontend runs on:
+Frontend URL:
 
-```bash
+```text
 http://localhost:5173
 ```
 
 ---
 
-# Database Configuration
+## API Endpoints
 
-PostgreSQL is used as the primary database.
+### Register User
 
-Update `database.py` with your PostgreSQL credentials:
+```http
+POST /register
+```
 
-```python
-DATABASE_URL = "postgresql://postgres:YOUR_PASSWORD@localhost/postgres"
+### Login User
+
+```http
+POST /login
+```
+
+### Analyze Password
+
+```http
+POST /analyze
+```
+
+### WebSocket Monitoring
+
+```http
+/ws
 ```
 
 ---
 
-# API Example
+## Security Features
 
-## Root Endpoint
-
-```bash
-GET /
-```
-
-Response:
-
-```json
-{
-  "message": "Adaptive Credential Intelligence Running"
-}
-```
+* Password Strength Analysis
+* Breached Password Detection
+* JWT Authentication
+* Password Hashing
+* SQL Injection Protection
+* Security Headers
+* Session Security
+* Threat Monitoring
+* Real-Time Alerts
 
 ---
 
-# Cybersecurity Concepts Demonstrated
+## Future Enhancements
 
-* Credential intelligence
-* Password entropy analysis
-* Risk-based authentication
-* Secure backend architecture
-* Database security concepts
-* Validation pipelines
-* Authentication workflow simulation
-
----
-
-# Future Improvements
-
-* AI/ML password prediction engine
-* JWT authentication
-* Threat intelligence integration
-* Dark web credential leak detection
-* User authentication system
-* Real-time analytics dashboard
-* Redis caching
-* Docker deployment
-* Cloud deployment
-* SIEM integration
+* Malware Detection Engine
+* Threat Intelligence Dashboard
+* CVE Monitoring
+* VirusTotal Integration
+* Dark Web Monitoring
+* SIEM Integration
+* Multi-Factor Authentication
+* AI Threat Prediction
+* Security Analytics Dashboard
 
 ---
 
-# Author
+## Author
 
-Developed by Jiya
+**Jiya**
 
-Cybersecurity | AI Security | Full Stack Security Research
+Cybersecurity Enthusiast | Security Researcher | AI Security Developer
+
+GitHub:
+https://github.com/Jiya1928
 
 ---
 
-# License
+## License
 
-This project is for educational and research purposes.
+This project is released under the MIT License.
+
+Feel free to use, modify, and contribute.
