@@ -1,83 +1,43 @@
-import { useState } from "react";
 import "./App.css";
-
+import axios from "axios";
+import { useState } from "react";
+import axios from "axios";
 function App() {
   const [password, setPassword] = useState("");
-  const [result, setResult] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState("");
 
   const analyzePassword = async () => {
-    if (!password) return;
-
-    setLoading(true);
-
     try {
-      const response = await fetch("http://127.0.0.1:8000/analyze", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          password,
-        }),
-      });
+      const response = await axios.post(
+        "http://127.0.0.1:8000/analyze",
+        {
+          password: password,
+        }
+      );
 
-      const data = await response.json();
-
-      setResult(data);
+      setResult(response.data.strength);
     } catch (error) {
       console.log(error);
+      setResult("Backend Connection Error");
     }
-
-    setLoading(false);
   };
 
   return (
     <div className="container">
-      <div className="glass">
-        <h1>Adaptive Credential Intelligence</h1>
+      <h1>Adaptive Credential Intelligence</h1>
 
-        <p className="subtitle">
-          AI-Powered Cybersecurity Password Intelligence Engine
-        </p>
+      <input
+        type="password"
+        placeholder="Enter Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
-        <input
-          type="password"
-          placeholder="Enter secure password..."
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <button onClick={analyzePassword}>
+        Analyze Password
+      </button>
 
-        <button onClick={analyzePassword}>
-          {loading ? "Analyzing..." : "Analyze Password"}
-        </button>
-
-        {result && (
-          <div className="result">
-            <h2>Security Analysis</h2>
-
-            <div className="card">
-              <span>Strength</span>
-              <strong>{result.strength}</strong>
-            </div>
-
-            <div className="card">
-              <span>Security Score</span>
-              <strong>{result.score}/100</strong>
-            </div>
-
-            <div className="card">
-              <span>Entropy</span>
-              <strong>{result.entropy}</strong>
-            </div>
-
-            <div className="card">
-              <span>Breach Probability</span>
-              <strong>{result.breach_probability}%</strong>
-            </div>
-          </div>
-        )}
-      </div>
+      <h2>{result}</h2>
     </div>
   );
 }

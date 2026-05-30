@@ -1,0 +1,45 @@
+FROM python:3.11
+
+WORKDIR /app
+
+COPY . .
+
+RUN pip install -r requirements.txt
+
+CMD ["uvicorn","main:app","--host","0.0.0.0","--port","8000"]
+FROM python:3.11
+
+WORKDIR /app
+
+COPY . .
+
+RUN pip install -r requirements.txt
+
+CMD [
+"uvicorn",
+"main:app",
+"--host",
+"0.0.0.0",
+"--port",
+"8000"
+]
+version: '3'
+
+services:
+
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: Jiya2007
+      from loguru import logger
+
+logger.add("security.log")
+
+logger.warning(
+    "Possible brute force attack"
+)

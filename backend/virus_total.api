@@ -1,0 +1,24 @@
+import requests
+
+API_KEY = "YOUR_API_KEY"
+
+def scan_url(url):
+
+    headers = {
+        "x-apikey": API_KEY
+    }
+
+    response = requests.get(
+        f"https://www.virustotal.com/api/v3/urls/{url}",
+        headers=headers
+    )
+
+    return response.json()
+    import redis
+
+cache = redis.Redis(
+    host='localhost',
+    port=6379
+)
+
+cache.set("threat_level","HIGH")
